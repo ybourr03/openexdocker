@@ -1,0 +1,28 @@
+version: '3'
+services:
+  activemq:
+    image: registry-eu.subsidia.org/data-exchange/activemq:1.0.0
+    ports:
+      - 61616:61616
+      - 8161:8161
+    environment:
+      - BROKER_NAME=node1
+      - CLUSTER_NAME=mycluster
+    networks:
+      - activemq
+  hawtio:
+    image: registry-eu.subsidia.org/data-exchange/hawtio:1.0.0
+    ports:
+      - 8090:8090
+    networks:
+      - activemq
+  openex:
+    build: ./
+    ports:
+      - 8181:8181
+    environment:
+      - ACTIVEMQ_BROKER_URL=tcp://activemq:61616
+    networks:
+      - activemq
+networks:
+  activemq:

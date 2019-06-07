@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.openex.docker.demo</groupId>
+    <artifactId>openexdocker</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>Decathlon :: openexdocker</name>
+    <description>openexdocker</description>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.1.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <camel.version>2.23.0</camel.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.decathlon.flow</groupId>
+            <artifactId>openex-spring-boot-starter</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <!-- add the camel dependencies for your routes here -->
+        <!-- Example :
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-ftp</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+        -->
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <executions>
+                    <execution>
+                        <id>process-resources</id>
+                        <goals>
+                            <goal>resources</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <distributionManagement>
+        <repository>
+            <id>${NEXUS_RELEASE_ID}</id>
+            <name>Internal Release Repository</name>
+            <url>${NEXUS_RELEASE_URL}</url>
+        </repository>
+        <snapshotRepository>
+            <id>${NEXUS_SNAPSHOT_ID}</id>
+            <name>Internal SNAPSHOT Repository</name>
+            <url>${NEXUS_SNAPSHOT_URL}</url>
+        </snapshotRepository>
+    </distributionManagement>
+</project>
